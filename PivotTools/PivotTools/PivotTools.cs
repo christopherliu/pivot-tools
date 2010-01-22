@@ -5,6 +5,24 @@ using System.Data.SqlClient;
 
 namespace PivotTools
 {
+    /// <summary>
+    /// Basic tools for pivoting a table. All up-to-date information
+    /// is available on the website: http://code.google.com/p/pivot-tools/
+    /// 
+    /// Copyright 2010 MagazineRadar
+    ///  
+    /// Licensed under the Apache License, Version 2.0 (the "License");
+    /// you may not use this file except in compliance with the License.
+    /// You may obtain a copy of the License at
+    /// 
+    /// http://www.apache.org/licenses/LICENSE-2.0
+    /// 
+    /// Unless required by applicable law or agreed to in writing, software
+    /// distributed under the License is distributed on an "AS IS" BASIS,
+    /// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    /// See the License for the specific language governing permissions
+    /// and limitations under the License. 
+    /// </summary>
     public static class PivotTools
     {
         /// <summary>
@@ -113,7 +131,7 @@ namespace PivotTools
 
             // Add in zeroes
             for (int row = 0; row < tableResults.Rows.Count; row++)
-                for (int col = tableResults.IndexOfLastNonPivotColumn - 1; col < tableResults.Columns.Count; col++)
+                for (int col = Math.Max(0,tableResults.IndexOfLastNonPivotColumn - 1); col < tableResults.Columns.Count; col++)
                     if (tableResults.Rows[row][col].ToString() == "")
                         tableResults.Rows[row][col] = 0;
 
