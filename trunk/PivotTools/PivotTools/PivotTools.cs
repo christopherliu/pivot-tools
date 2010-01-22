@@ -8,6 +8,28 @@ namespace PivotTools
     public static class PivotTools
     {
         /// <summary>
+        /// See documentation for the version of this function accepting an
+        /// IDataReader.
+        /// </summary>
+        /// <param name="dataValues">Any DataTable. It should be sorted
+        /// before the pivot takes place.</param>
+        /// <param name="keyColumn">Column in the DataTable which
+        /// serves to identify each row. Your DataTable's recordset should be
+        /// primarily grouped and sorted by this column.</param>
+        /// <param name="pivotNameColumn">Column in the DataTable that contains
+        /// the values you'd like to transform from rows into columns.</param>
+        /// <param name="pivotValueColumn">Column that in the DataReader that
+        /// contains the values to pivot into the appropriate columns.</param>
+        /// <param name="indexOfLastNonPivotColumn">Returns the index of the
+        /// last non-pivot column. All columns after it are pivoted.</param>
+        /// <returns></returns>
+        public static PivotedTable Pivot(DataTable dataValues, string keyColumn,
+            string pivotNameColumn, string pivotValueColumn)
+        {
+            return Pivot(dataValues.CreateDataReader(), keyColumn, pivotNameColumn, pivotValueColumn);
+        }
+
+        /// <summary>
         /// Pivots results from a IDataReader into a new table. The resulting
         /// datatype is a PivotedTable with the pivoted columns at the end of
         /// the table.
